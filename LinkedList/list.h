@@ -4,8 +4,9 @@ using std::cout;
 using std::endl;
 
 class node {
-  int data;
-  node *next;
+  public:
+    int data;
+    node *next = NULL;
 };
 
 class list {
@@ -14,12 +15,13 @@ class list {
     ~list();
     void pushFront(int value);
     void pushBack(int value);
-    void pushMiddle(int value);
+    void pushPos(int value, int position);
     void popFront();
     void popBack();
-    void popMiddle();
+    void popPos(int position);
     void display();
+    int getSize();
   private:
     node *head;
-    node *tail;
+    int size = 0;
 };
