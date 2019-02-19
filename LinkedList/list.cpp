@@ -70,48 +70,60 @@ void list::pushPos(int value, int position) {
 }
 
 void list::popFront() {
-  cout << "Popping node at the front" << endl;
-  node *temp = head;
-  head = head->next;
-  delete temp;
-  size--;
+  if (size > 0) {
+    cout << "Popping node at the front" << endl;
+    node *temp = head;
+    head = head->next;
+    delete temp;
+    size--;
+  } else {
+    cout << "List is already empty" << endl;
+  }
 }
 
 void list::popBack() {
-  cout << "Popping node at the back" << endl;
-  node *previous;
-  node *current = head;
-  while (current->next != NULL) {
-    previous = current;
-    current = current->next;
+  if (size > 0) {
+    cout << "Popping node at the back" << endl;
+    node *previous;
+    node *current = head;
+    while (current->next != NULL) {
+      previous = current;
+      current = current->next;
+    }
+    previous->next = NULL;
+    delete current;
+    size--;
+  } else {
+    cout << "List is already empty" << endl;
   }
-  previous->next = NULL;
-  delete current;
-  size--;
 }
 
 void list::popPos(int position) {
-  if (position == 0) {
-    popFront();
-    return;
-  } else if (position == size - 1) {
-    popBack();
-    return;
-  } else if (position > 0 && position > size) {
-    cout << "There is no such position" << endl;
-    return;
+  if (size > 0) {
+    if (position == 0) {
+      popFront();
+      return;
+    } else if (position == size - 1) {
+      popBack();
+      return;
+    } else if (position > 0 && position >= size) {
+      cout << "There is no such position" << endl;
+      return;
+    } else {
+      cout << "Popping position " << position << endl;
+    }
+    node *previous;
+    node *current = head;
+    for (int i = 0; i < position; i++) {
+      previous = current;
+      current = current->next;
+    }
+    previous->next = current->next;
+    delete current;
+    size--;
   } else {
-    cout << "Popping position " << position << endl;
+    cout << "List is already empty" << endl;
   }
-  node *previous;
-  node *current = head;
-  for (int i = 0; i < position; i++) {
-    previous = current;
-    current = current->next;
-  }
-  previous->next = current->next;
-  delete current;
-  size--;
 }
 
 void list::display() {
