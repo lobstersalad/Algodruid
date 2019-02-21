@@ -13,6 +13,7 @@ class list {
   public:
     list();
     ~list();
+    // Basic operations
     void pushFront(int value);
     void pushBack(int value);
     void pushPos(int value, int position);
@@ -21,6 +22,8 @@ class list {
     void popPos(int position);
     void display();
     int getSize();
+    // Special operations
+    void reverse();
   private:
     node *head;
     int size = 0;

@@ -82,7 +82,7 @@ void list::popFront() {
 }
 
 void list::popBack() {
-  if (size > 0) {
+  if (size > 1) {
     cout << "Popping node at the back" << endl;
     node *previous;
     node *current = head;
@@ -93,6 +93,8 @@ void list::popBack() {
     previous->next = NULL;
     delete current;
     size--;
+  } else if (size == 1) {
+    popFront();
   } else {
     cout << "List is already empty" << endl;
   }
@@ -139,4 +141,17 @@ void list::display() {
 
 int list::getSize() {
   return size;
+}
+
+void list::reverse() {
+  cout << "Reversing list" << endl;
+  node *previous = NULL;
+  node *temp;
+  node *current = head;
+  while (current != NULL) {
+    temp = current;
+    current->next = previous;
+    previous = current;
+    current = temp->next;
+  }
 }
