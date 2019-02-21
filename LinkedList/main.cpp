@@ -3,20 +3,28 @@
 using std::cin;
 
 void SpecialMenu(list &my_list) {
-  int option = 0;
+  int option = 0, k = 0;
   do {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
-    cout << "2. Back" << endl;
+    cout << "2. Reverse Every k Nodes" << endl;
+    cout << "3. Display List" << endl;
+    cout << "4. Back" << endl;
     cin >> option;
     if (option == 1) {
       my_list.reverse();
     } else if (option == 2) {
+      cout << "Enter k" << endl;
+      cin >> k;
+      my_list.reverseK(k);
+    } else if (option == 3) {
+      my_list.display();
+    } else if (option == 4) {
       cout << "Returning to main menu" << endl;
     } else {
       cout << "Invalid option" << endl;
     }
-  } while (option != 2);
+  } while (option != 4);
 }
 
 void BasicMenu(list &my_list) {

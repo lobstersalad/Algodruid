@@ -145,13 +145,37 @@ int list::getSize() {
 
 void list::reverse() {
   cout << "Reversing list" << endl;
+  node *temp = NULL;
   node *previous = NULL;
-  node *temp;
   node *current = head;
   while (current != NULL) {
-    temp = current;
+    temp = current->next;
     current->next = previous;
     previous = current;
-    current = temp->next;
+    current = temp;
+  }
+  head = previous;
+}
+
+void list::reverseK(int k) {
+  cout << "Reversing every " << k << " nodes in the list" << endl;
+  int counter = 0;
+  node *temp = NULL;
+  node *previous = NULL;
+  node *current = head;
+  while (current != NULL) {
+    if (counter == k) {
+      current = current->next;
+      k = 0;
+    }
+    if (current != NULL) {
+      temp = current->next;
+      current->next = previous;
+      previous = current;
+      current = temp;
+      k++;
+    } else {
+      // done
+    }
   }
 }

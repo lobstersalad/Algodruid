@@ -24,6 +24,7 @@ class list {
     int getSize();
     // Special operations
     void reverse();
+    void reverseK(int k);
   private:
     node *head;
     int size = 0;
