@@ -1,6 +1,20 @@
 #include "list.h"
+#include <limits>
 
 using std::cin;
+
+
+int parseOption(int max) {
+	int option;
+  cin >> option;
+  while (!isdigit(option) && (option < 0 || option > max)) {
+    cout << "Invalid option" << endl;
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin >> option;
+  }
+  return option;
+}
 
 void SpecialMenu(list &my_list) {
   int option = 0, k = 0;
@@ -10,7 +24,7 @@ void SpecialMenu(list &my_list) {
     cout << "2. Reverse Every k Nodes" << endl;
     cout << "3. Display List" << endl;
     cout << "4. Back" << endl;
-    cin >> option;
+    option = parseOption(4);
     if (option == 1) {
       my_list.reverse();
     } else if (option == 2) {
@@ -21,8 +35,6 @@ void SpecialMenu(list &my_list) {
       my_list.display();
     } else if (option == 4) {
       cout << "Returning to main menu" << endl;
-    } else {
-      cout << "Invalid option" << endl;
     }
   } while (option != 4);
 }
@@ -39,7 +51,7 @@ void BasicMenu(list &my_list) {
     cout << "6. Pop at given position" << endl;
     cout << "7. Display" << endl;
     cout << "8. Back" << endl;
-    cin >> option;
+    option = parseOption(8);
     if (option == 1) {
       cout << "Enter value" << endl;
       cin >> value;
@@ -63,9 +75,7 @@ void BasicMenu(list &my_list) {
     } else if (option == 7) {
       my_list.display();
     } else if (option == 8) {
-      cout << "Goodbye" << endl;
-    } else {
-      cout << "Invalid option" << endl;
+      cout << "Returning to main menu" << endl;
     }
   } while (option != 8);
 }
@@ -77,15 +87,13 @@ void MainMenu(list &my_list) {
     cout << "1. Basic Operations" << endl;
     cout << "2. Special Operations" << endl;
     cout << "3. Exit" << endl;
-    cin >> option;
+    option = parseOption(3);
     if (option == 1) {
       BasicMenu(my_list);
     } else if (option == 2) {
       SpecialMenu(my_list);
     } else if (option == 3) {
       cout << "Goodbye" << endl;
-    } else {
-      cout << "Invalid option" << endl;
     }
   } while (option != 3);
 }

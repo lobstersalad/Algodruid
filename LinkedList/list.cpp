@@ -166,14 +166,17 @@ void list::reverseK(int k) {
   while (current != NULL) {
     if (counter == k) {
       current = current->next;
-      k = 0;
+      // head being assigned should only happen for the first segment
+      head = previous;
+      counter = 0;
+      // Now iterate from previous to node before NULL, next node should be current/temp (both in the same spot right now)
     }
     if (current != NULL) {
       temp = current->next;
       current->next = previous;
       previous = current;
       current = temp;
-      k++;
+      counter++;
     } else {
       // done
     }
