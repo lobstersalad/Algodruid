@@ -159,17 +159,27 @@ void list::reverse() {
 
 void list::reverseK(int k) {
   cout << "Reversing every " << k << " nodes in the list" << endl;
+  bool head_set = false;
   int counter = 0;
   node *temp = NULL;
+  node *marker = NULL;
   node *previous = NULL;
   node *current = head;
   while (current != NULL) {
     if (counter == k) {
-      current = current->next;
-      // head being assigned should only happen for the first segment
-      head = previous;
+      if (head_set == false) {
+        head = previous;
+        head_set = true;
+      }
+      if (marker != NULL) {
+        marker->next = previous;
+      }
+      while (previous->next != NULL) {
+        previous = previous->next;
+      }
+      marker = previous;
+      previous = NULL;
       counter = 0;
-      // Now iterate from previous to node before NULL, next node should be current/temp (both in the same spot right now)
     }
     if (current != NULL) {
       temp = current->next;
@@ -181,4 +191,5 @@ void list::reverseK(int k) {
       // done
     }
   }
+  marker->next = previous;
 }
