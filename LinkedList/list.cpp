@@ -16,6 +16,8 @@ list::~list() {
   }
 }
 
+// Basic operations
+
 void list::pushFront(int value) {
   cout << "Pushing " << value << " to the front" << endl;
   node *temp = new node;
@@ -139,9 +141,20 @@ void list::display() {
   cout << endl;
 }
 
+void list::clear() {
+  while (size > 0) {
+    node *temp = head;
+    head = head->next;
+    delete temp;
+    size--;
+  }
+}
+
 int list::getSize() {
   return size;
 }
+
+// Special operations
 
 void list::reverse() {
   cout << "Reversing list" << endl;
@@ -158,38 +171,54 @@ void list::reverse() {
 }
 
 void list::reverseK(int k) {
-  cout << "Reversing every " << k << " nodes in the list" << endl;
-  bool head_set = false;
-  int counter = 0;
-  node *temp = NULL;
-  node *marker = NULL;
-  node *previous = NULL;
-  node *current = head;
-  while (current != NULL) {
-    if (counter == k) {
-      if (head_set == false) {
-        head = previous;
-        head_set = true;
+  if (k > 1 && k < size) {
+    cout << "Reversing every " << k << " nodes in the list" << endl;
+    bool head_set = false;
+    int counter = 0;
+    node *temp = NULL;
+    node *marker = NULL;
+    node *previous = NULL;
+    node *current = head;
+    while (current != NULL) {
+      if (counter == k) {
+        if (head_set == false) {
+          head = previous;
+          head_set = true;
+        }
+        if (marker != NULL) {
+          marker->next = previous;
+        }
+        while (previous->next != NULL) {
+          previous = previous->next;
+        }
+        marker = previous;
+        previous = NULL;
+        counter = 0;
       }
-      if (marker != NULL) {
-        marker->next = previous;
+      if (current != NULL) {
+        temp = current->next;
+        current->next = previous;
+        previous = current;
+        current = temp;
+        counter++;
+      } else {
+        // done
       }
-      while (previous->next != NULL) {
-        previous = previous->next;
-      }
-      marker = previous;
-      previous = NULL;
-      counter = 0;
     }
-    if (current != NULL) {
-      temp = current->next;
-      current->next = previous;
-      previous = current;
-      current = temp;
-      counter++;
-    } else {
-      // done
-    }
+    marker->next = previous;
+  } else if (k > 1 && k >= size) {
+    reverse();
+  } else if (k == 1) {
+    cout << "No effect" << endl;
+  } else {
+    cout << "K should be greater than 1" << endl;
   }
-  marker->next = previous;
+}
+
+int list::findKBegin(int k) {
+
+}
+
+int list::findKEnd(int k) {
+
 }

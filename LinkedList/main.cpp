@@ -22,9 +22,11 @@ void SpecialMenu(list &my_list) {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
     cout << "2. Reverse Every k Nodes" << endl;
-    cout << "3. Display List" << endl;
-    cout << "4. Back" << endl;
-    option = parseOption(4);
+    cout << "3. Find kth Element from Beginning" << endl;
+    cout << "4. Find kth Element from End" << endl;
+    cout << "5. Display List" << endl;
+    cout << "6. Back" << endl;
+    option = parseOption(6);
     if (option == 1) {
       my_list.reverse();
     } else if (option == 2) {
@@ -32,11 +34,19 @@ void SpecialMenu(list &my_list) {
       cin >> k;
       my_list.reverseK(k);
     } else if (option == 3) {
-      my_list.display();
+      cout << "Enter k" << endl;
+      cin >> k;
+      my_list.findKBegin(k);
     } else if (option == 4) {
+      cout << "Enter k" << endl;
+      cin >> k;
+      my_list.findKEnd(k);
+    } else if (option == 5) {
+      my_list.display();
+    } else if (option == 6) {
       cout << "Returning to main menu" << endl;
     }
-  } while (option != 4);
+  } while (option != 6);
 }
 
 void BasicMenu(list &my_list) {
@@ -45,13 +55,14 @@ void BasicMenu(list &my_list) {
     cout << "Basic Menu:" << endl;
     cout << "1. Push Front" << endl;
     cout << "2. Push Back" << endl;
-    cout << "3. Push to given position" << endl;
+    cout << "3. Push to Given Position" << endl;
     cout << "4. Pop Front" << endl;
     cout << "5. Pop Back" << endl;
-    cout << "6. Pop at given position" << endl;
-    cout << "7. Display" << endl;
-    cout << "8. Back" << endl;
-    option = parseOption(8);
+    cout << "6. Pop at Given Position" << endl;
+    cout << "7. Display List" << endl;
+    cout << "8. Clear List" << endl;
+    cout << "9. Back" << endl;
+    option = parseOption(9);
     if (option == 1) {
       cout << "Enter value" << endl;
       cin >> value;
@@ -75,9 +86,11 @@ void BasicMenu(list &my_list) {
     } else if (option == 7) {
       my_list.display();
     } else if (option == 8) {
+      my_list.clear();
+    } else if (option == 9) {
       cout << "Returning to main menu" << endl;
     }
-  } while (option != 8);
+  } while (option != 9);
 }
 
 void MainMenu(list &my_list) {

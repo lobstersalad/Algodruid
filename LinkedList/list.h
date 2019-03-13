@@ -21,10 +21,13 @@ class list {
     void popBack();
     void popPos(int position);
     void display();
+    void clear();
     int getSize();
     // Special operations
     void reverse();
     void reverseK(int k);
+    int findKBegin(int k);
+    int findKEnd(int k);
   private:
     node *head;
     int size = 0;
