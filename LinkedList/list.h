@@ -16,18 +16,18 @@ class list {
     // Basic operations
     void pushFront(int value);
     void pushBack(int value);
-    void pushPos(int value, int position);
+    void pushPos(int value, int index);
     void popFront();
     void popBack();
-    void popPos(int position);
+    void popPos(int index);
     void display();
     void clear();
     int getSize();
     // Special operations
     void reverse();
     void reverseK(int k);
-    int findKBegin(int k);
-    int findKEnd(int k);
+    void findKBegin(int k);
+    void findKEnd(int k);
   private:
     node *head;
     int size = 0;

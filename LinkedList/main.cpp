@@ -1,8 +1,13 @@
 #include "list.h"
 #include <limits>
+#include <string>
 
 using std::cin;
+using std::string;
 
+string ordinal(int value) {
+  // Find ordinal suffixes
+}
 
 int parseOption(int max) {
 	int option;
@@ -22,7 +27,7 @@ void SpecialMenu(list &my_list) {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
     cout << "2. Reverse Every k Nodes" << endl;
-    cout << "3. Find kth Element from Beginning" << endl;
+    cout << "3. Find kth Element from Start" << endl;
     cout << "4. Find kth Element from End" << endl;
     cout << "5. Display List" << endl;
     cout << "6. Back" << endl;
@@ -50,15 +55,15 @@ void SpecialMenu(list &my_list) {
 }
 
 void BasicMenu(list &my_list) {
-  int option = 0, value, position;
+  int option = 0, value, index;
   do {
     cout << "Basic Menu:" << endl;
     cout << "1. Push Front" << endl;
     cout << "2. Push Back" << endl;
-    cout << "3. Push to Given Position" << endl;
+    cout << "3. Push to Given Index" << endl;
     cout << "4. Pop Front" << endl;
     cout << "5. Pop Back" << endl;
-    cout << "6. Pop at Given Position" << endl;
+    cout << "6. Pop at Given Index" << endl;
     cout << "7. Display List" << endl;
     cout << "8. Clear List" << endl;
     cout << "9. Back" << endl;
@@ -72,17 +77,17 @@ void BasicMenu(list &my_list) {
       cin >> value;
       my_list.pushBack(value);
     } else if (option == 3) {
-      cout << "Enter value and position" << endl;
-      cin >> value >> position;
-      my_list.pushPos(value, position);
+      cout << "Enter value and index" << endl;
+      cin >> value >> index;
+      my_list.pushPos(value, index);
     } else if (option == 4) {
       my_list.popFront();
     } else if (option == 5) {
       my_list.popBack();
     } else if (option == 6) {
-      cout << "Enter position" << endl;
-      cin >> position;
-      my_list.popPos(position);
+      cout << "Enter index" << endl;
+      cin >> index;
+      my_list.popPos(index);
     } else if (option == 7) {
       my_list.display();
     } else if (option == 8) {

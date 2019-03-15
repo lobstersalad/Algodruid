@@ -45,24 +45,24 @@ void list::pushBack(int value) {
   size++;
 }
 
-void list::pushPos(int value, int position) {
-  if (position == 0) {
+void list::pushPos(int value, int index) {
+  if (index == 0) {
     pushFront(value);
     return;
-  } else if (position == size) {
+  } else if (index == size) {
     pushBack(value);
     return;
-  } else if (position > 0 && position > size) {
-    cout << "There is no such position" << endl;
+  } else if (index > 0 && index > size) {
+    cout << "No such index" << endl;
     return;
   } else {
-    cout << "Inserting " << value << " at position " << position << endl;
+    cout << "Inserting " << value << " at index " << index << endl;
   }
   node *previous;
   node *current = head;
   node *temp = new node;
   temp->data = value;
-  for (int i = 0; i < position; i++) {
+  for (int i = 0; i < index; i++) {
     previous = current;
     current = current->next;
   }
@@ -102,23 +102,23 @@ void list::popBack() {
   }
 }
 
-void list::popPos(int position) {
+void list::popPos(int index) {
   if (size > 0) {
-    if (position == 0) {
+    if (index == 0) {
       popFront();
       return;
-    } else if (position == size - 1) {
+    } else if (index == size - 1) {
       popBack();
       return;
-    } else if (position > 0 && position >= size) {
-      cout << "There is no such position" << endl;
+    } else if (index > 0 && index >= size) {
+      cout << "No such index" << endl;
       return;
     } else {
-      cout << "Popping position " << position << endl;
+      cout << "Popping index " << index << endl;
     }
     node *previous;
     node *current = head;
-    for (int i = 0; i < position; i++) {
+    for (int i = 0; i < index; i++) {
       previous = current;
       current = current->next;
     }
@@ -215,10 +215,31 @@ void list::reverseK(int k) {
   }
 }
 
-int list::findKBegin(int k) {
-
+void list::findKBegin(int k) {
+  if (k >= 0 && k < size) {
+    node *current = head;
+    for (int i = 0; i != k; i++) {
+      current = current->next;
+    }
+    cout << "Value at position " << k << " from the start is " << current->data << endl;
+  } else {
+    cout << "No such position" << endl;
+  }
 }
 
-int list::findKEnd(int k) {
-
+void list::findKEnd(int k) {
+  if (k >= 0 && k < size) {
+    node *current = head;
+    node *position = head;
+    for (int i = 0; i != k; i++) {
+      current = current->next;
+    }
+    while (current != NULL) {
+      current = current->next;
+      position = position->next;
+    }
+    cout << "Value at position " << k << " from the end is " << position->data << endl;
+  } else {
+    cout << "No such position" << endl;
+  }
 }
