@@ -4,6 +4,20 @@ list::list() {
   head = NULL;
 }
 
+list::list(const list& list) {
+  node *current = head;
+  while (current != NULL) {
+    this->pushBack(current->data);
+    current = current->next;
+  }
+}
+
+list& list::operator=(const list& rhs) {
+  list temp(rhs);
+  swap(temp.head, head);
+  return *this;
+}
+
 list::~list() {
   if (head != NULL) {
     node *current = head;
@@ -12,7 +26,6 @@ list::~list() {
       delete current;
       current = next;
     }
-    delete head;
   }
 }
 
@@ -170,6 +183,7 @@ void list::reverse() {
   head = previous;
 }
 
+// Non-recursive reverseK
 void list::reverseK(int k) {
   if (k > 1 && k < size) {
     cout << "Reversing every " << k << " nodes in the list" << endl;
