@@ -5,7 +5,6 @@ list::list() {
 }
 
 list::list(const list& list) {
-  head = NULL;
   node *current = head;
   while (current != NULL) {
     this->pushBack(current->data);
@@ -27,7 +26,6 @@ list::~list() {
       delete current;
       current = next;
     }
-    delete head;
   }
 }
 
