@@ -1,8 +1,0 @@
-
-FYI sanitizers usually give nicer error message than Valgrind, 
-so if you can use clang or gcc you may want to try sanitizers
-in the future.
-
-forward_list vs linked list
-
-unit tests, boost::test
