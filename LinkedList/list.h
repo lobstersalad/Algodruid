@@ -1,7 +1,11 @@
+#ifndef LIST_H
+#define LIST_H
+
 #include <iostream>
 
 using std::cout;
 using std::endl;
+using std::swap;
 
 class node {
   public:
@@ -12,6 +16,8 @@ class node {
 class list {
   public:
     list();
+    list(const list& list);
+    list& operator=(const list& list);
     ~list();
     // Basic operations
     void pushFront(int value);
@@ -32,3 +38,5 @@ class list {
     node *head;
     int size = 0;
 };
+
+#endif
