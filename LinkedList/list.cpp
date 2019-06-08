@@ -4,17 +4,17 @@ list::list() : name("default"), size(0), head(nullptr) {
 
 }
 
-list::list(const list& l) : name("default"), size(0), head(nullptr) {
-  node *current = l.head;
+list::list(const list& copy) : name("default"), size(0), head(nullptr) {
+  node *current = copy.head;
   while (current != nullptr) {
     this->pushBack(current->data);
     current = current->next;
   }
 }
 
-list& list::operator=(const list& l) {
-  list temp(l);
-  swap(temp.head, head);
+list& list::operator=(const list& copy) {
+  list temp(copy);
+  swap(head, temp.head);
   return *this;
 }
 
