@@ -156,7 +156,12 @@ void mainMenu(lists &lists) {
 			option = parseOption(lists.list_storage.size());
       basicMenu(*lists.list_storage[option - 1]);
     } else if (option == 3) {
-      specialMenu(current);
+			cout << "On which list would you like to perform special operations?" << endl;
+			for (int i = 0; i < lists.list_storage.size(); i++) {
+				cout << i + 1 << ". " << lists.list_storage[i]->getName() << endl;
+			}
+			option = parseOption(lists.list_storage.size());
+			specialMenu(*lists.list_storage[option - 1]);
     } else if (option == max_options) {
       cout << "Goodbye" << endl;
     }
