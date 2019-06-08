@@ -2,10 +2,12 @@
 #define LIST_H
 
 #include <iostream>
+#include <string>
 
 using std::cout;
 using std::endl;
 using std::swap;
+using std::string;
 
 class node {
   public:
@@ -19,6 +21,9 @@ class list {
     list(const list& list);
     list& operator=(const list& list);
     ~list();
+    void setName(string name);
+    string getName();
+    int getSize();
     // Basic operations
     void pushFront(int value);
     void pushBack(int value);
@@ -28,13 +33,13 @@ class list {
     void popPos(int index);
     void display();
     void clear();
-    int getSize();
     // Special operations
     void reverse();
     void reverseK(int k);
     void findKBegin(int k);
     void findKEnd(int k);
   private:
+    string name;
     node *head;
     int size = 0;
 };
