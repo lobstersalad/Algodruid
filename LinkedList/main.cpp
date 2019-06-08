@@ -112,19 +112,22 @@ list selectList(lists &lists) {
 }
 
 void listManager(lists &lists) {
-	int option = 0, max_options = 4;
+	int option = 0, max_options = 5;
 	do {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
 		cout << "2. Delete List" << endl;
-		cout << "3. Display Lists" << endl;
-		cout << "4. Back" << endl;
+		cout << "3. Merge Lists" << endl;
+		cout << "4. Display Lists" << endl;
+		cout << "5. Back" << endl;
 		option = parseOption(max_options);
 		if (option == 1) {
 			lists.newList();
 		} else if (option == 2) {
 			lists.deleteList();
 		} else if (option == 3) {
+			lists.mergeLists();
+		} else if (option == 4) {
 			lists.display();
 		} else if (option == max_options) {
 			cout << "Returning to main menu" << endl;

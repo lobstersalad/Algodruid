@@ -25,6 +25,10 @@ void lists::deleteList() {
 
 }
 
+void lists::mergeLists() {
+
+}
+
 void lists::display() {
   for (int i = 0; i < list_storage.size(); i++) {
     list_storage[i]->display();

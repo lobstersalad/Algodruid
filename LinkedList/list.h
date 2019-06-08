@@ -12,7 +12,7 @@ using std::string;
 class node {
   public:
     int data;
-    node *next = NULL;
+    node *next = nullptr;
 };
 
 class list {
@@ -40,8 +40,8 @@ class list {
     void findKEnd(int k);
   private:
     string name;
+    int size;
     node *head;
-    int size = 0;
 };
 
 #endif

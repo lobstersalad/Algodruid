@@ -1,27 +1,27 @@
 #include "list.h"
 
-list::list() {
-  head = NULL;
+list::list() : name("default"), size(0), head(nullptr) {
+
 }
 
-list::list(const list& list) {
-  node *current = list.head;
-  while (current != NULL) {
+list::list(const list& l) : name("default"), size(0), head(nullptr) {
+  node *current = l.head;
+  while (current != nullptr) {
     this->pushBack(current->data);
     current = current->next;
   }
 }
 
-list& list::operator=(const list& rhs) {
-  list temp(rhs);
+list& list::operator=(const list& l) {
+  list temp(l);
   swap(temp.head, head);
   return *this;
 }
 
 list::~list() {
-  if (head != NULL) {
+  if (head != nullptr) {
     node *current = head;
-    while (current != NULL) {
+    while (current != nullptr) {
       node *next = current->next;
       delete current;
       current = next;
@@ -56,13 +56,13 @@ void list::pushBack(int value) {
   cout << "Pushing " << value << " to the back" << endl;
   node *temp = new node;
   temp->data = value;
-  temp->next = NULL;
-  if (head == NULL) {
+  temp->next = nullptr;
+  if (head == nullptr) {
     head = temp;
-    temp = NULL;
+    temp = nullptr;
   } else {
     node *current = head;
-    while (current->next != NULL) {
+    while (current->next != nullptr) {
       current = current->next;
     }
     current->next = temp;
@@ -113,11 +113,11 @@ void list::popBack() {
     cout << "Popping node at the back" << endl;
     node *previous;
     node *current = head;
-    while (current->next != NULL) {
+    while (current->next != nullptr) {
       previous = current;
       current = current->next;
     }
-    previous->next = NULL;
+    previous->next = nullptr;
     delete current;
     size--;
   } else if (size == 1) {
@@ -158,7 +158,7 @@ void list::popPos(int index) {
 void list::display() {
   cout << "Name: " << getName() << ", Size: " << getSize() << endl;
   node *current = head;
-  while (current->next != NULL) {
+  while (current->next != nullptr) {
     cout << "{" << current->data << "}->";
     current = current->next;
   }
@@ -178,10 +178,10 @@ void list::clear() {
 
 void list::reverse() {
   cout << "Reversing list" << endl;
-  node *temp = NULL;
-  node *previous = NULL;
+  node *temp = nullptr;
+  node *previous = nullptr;
   node *current = head;
-  while (current != NULL) {
+  while (current != nullptr) {
     temp = current->next;
     current->next = previous;
     previous = current;
@@ -196,27 +196,27 @@ void list::reverseK(int k) {
     cout << "Reversing every " << k << " nodes in the list" << endl;
     bool head_set = false;
     int counter = 0;
-    node *temp = NULL;
-    node *marker = NULL;
-    node *previous = NULL;
+    node *temp = nullptr;
+    node *marker = nullptr;
+    node *previous = nullptr;
     node *current = head;
-    while (current != NULL) {
+    while (current != nullptr) {
       if (counter == k) {
         if (head_set == false) {
           head = previous;
           head_set = true;
         }
-        if (marker != NULL) {
+        if (marker != nullptr) {
           marker->next = previous;
         }
-        while (previous->next != NULL) {
+        while (previous->next != nullptr) {
           previous = previous->next;
         }
         marker = previous;
-        previous = NULL;
+        previous = nullptr;
         counter = 0;
       }
-      if (current != NULL) {
+      if (current != nullptr) {
         temp = current->next;
         current->next = previous;
         previous = current;
@@ -255,7 +255,7 @@ void list::findKEnd(int k) {
     for (int i = 0; i != k; i++) {
       current = current->next;
     }
-    while (current != NULL) {
+    while (current != nullptr) {
       current = current->next;
       position = position->next;
     }
