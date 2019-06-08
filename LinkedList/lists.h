@@ -18,8 +18,8 @@ class lists {
     void newList();
     void deleteList();
     void display();
-  private:
     vector<shared_ptr<list>> list_storage;
+  private:
 };
 
 #endif

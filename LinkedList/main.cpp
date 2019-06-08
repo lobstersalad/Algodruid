@@ -13,7 +13,7 @@ string ordinal(int value) {
 int parseOption(int max_options) {
 	int option;
   cin >> option;
-  while (!isdigit(option) && (option < 0 || option > max_options)) {
+  while (!isdigit(option) && (option <= 0 || option > max_options)) {
     cout << "Invalid option" << endl;
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -35,10 +35,12 @@ void specialMenu(list &list) {
     option = parseOption(max_options);
     if (option == 1) {
       list.reverse();
+			list.display();
     } else if (option == 2) {
       cout << "Enter k" << endl;
       cin >> k;
       list.reverseK(k);
+			list.display();
     } else if (option == 3) {
       cout << "Enter k" << endl;
       cin >> k;
@@ -73,22 +75,28 @@ void basicMenu(list &list) {
       cout << "Enter value" << endl;
       cin >> value;
       list.pushFront(value);
+			list.display();
     } else if (option == 2) {
       cout << "Enter value" << endl;
       cin >> value;
       list.pushBack(value);
+			list.display();
     } else if (option == 3) {
       cout << "Enter value and index" << endl;
       cin >> value >> index;
       list.pushPos(value, index);
+			list.display();
     } else if (option == 4) {
       list.popFront();
+			list.display();
     } else if (option == 5) {
       list.popBack();
+			list.display();
     } else if (option == 6) {
       cout << "Enter index" << endl;
       cin >> index;
       list.popPos(index);
+			list.display();
     } else if (option == 7) {
       list.display();
     } else if (option == 8) {
@@ -97,6 +105,10 @@ void basicMenu(list &list) {
       cout << "Returning to main menu" << endl;
     }
   } while (option != max_options);
+}
+
+list selectList(lists &lists) {
+
 }
 
 void listManager(lists &lists) {
@@ -122,8 +134,10 @@ void listManager(lists &lists) {
 
 void mainMenu(lists &lists) {
   int option = 0, max_options = 4;
+	list current;
   do {
     cout << "Main Menu:" << endl;
+		// Current List Display
 		cout << "1. List Manager" << endl;
     cout << "2. Basic Operations" << endl;
     cout << "3. Special Operations" << endl;
@@ -132,9 +146,14 @@ void mainMenu(lists &lists) {
 		if (option == 1) {
 			listManager(lists);
 		} else if (option == 2) {
-      // basicMenu();
+			cout << "On which list would you like to perform basic operations?" << endl;
+			for (int i = 0; i < lists.list_storage.size(); i++) {
+				cout << i + 1 << ". " << lists.list_storage[i]->getName() << endl;
+			}
+			option = parseOption(lists.list_storage.size());
+      basicMenu(*lists.list_storage[option - 1]);
     } else if (option == 3) {
-      // specialMenu();
+      specialMenu(current);
     } else if (option == max_options) {
       cout << "Goodbye" << endl;
     }

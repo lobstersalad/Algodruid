@@ -5,7 +5,7 @@ list::list() {
 }
 
 list::list(const list& list) {
-  node *current = head;
+  node *current = list.head;
   while (current != NULL) {
     this->pushBack(current->data);
     current = current->next;
@@ -27,6 +27,18 @@ list::~list() {
       current = next;
     }
   }
+}
+
+void list::setName(string name) {
+  this->name = name;
+}
+
+string list::getName() {
+  return name;
+}
+
+int list::getSize() {
+  return size;
 }
 
 // Basic operations
@@ -144,14 +156,13 @@ void list::popPos(int index) {
 }
 
 void list::display() {
-  cout << "Current size is " << getSize() << endl;
-  cout << "Current list: ";
+  cout << "Name: " << getName() << ", Size: " << getSize() << endl;
   node *current = head;
-  while (current != NULL) {
-    cout << current->data << " ";
+  while (current->next != NULL) {
+    cout << "{" << current->data << "}->";
     current = current->next;
   }
-  cout << endl;
+  cout << "{" << current->data << "}" << endl;
 }
 
 void list::clear() {
@@ -161,10 +172,6 @@ void list::clear() {
     delete temp;
     size--;
   }
-}
-
-int list::getSize() {
-  return size;
 }
 
 // Special operations
