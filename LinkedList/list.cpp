@@ -92,7 +92,7 @@ void list::pushPos(char value, int position) {
   if (position <= 1) {
     pushFront(value);
     return;
-  } else if (position >= size) {
+  } else if (position > size) {
     pushBack(value);
     return;
   } else {
@@ -147,7 +147,7 @@ void list::popPos(int position) {
     if (position <= 1) {
       popFront();
       return;
-    } else if (position >= size) {
+    } else if (position > size) {
       popBack();
       return;
     } else {
