@@ -26,7 +26,6 @@ class list {
     string getName();
     int getSize();
     node* goTo(int position);
-    node* goToTail();
     // Basic operations
     void pushFront(char value);
     void pushBack(char value);

@@ -5,7 +5,7 @@ lists::lists() {
 }
 
 void lists::newList() {
-  int size;
+  int size = 0;
   char value;
   string name;
   cout << "Please enter a name for this list" << endl;
@@ -29,21 +29,26 @@ void lists::deleteList() {
 void lists::copyList() {
   int list_A, list_B, target;
   cout << "This operation will copy list A, from target node onwards, onto the end of list B" << endl;
-  cout << "Example: A = {1}->{2}->{3} and B = {4}->{5}->{6}" << endl;
-  cout << "Copy A to B from node 2 onwards" << endl;
-  cout << "Result: A = {1}->{2}->{3} and B = {4}->{5}->{6}->{2}->{3}" << endl;
   for (int i = 0; i < list_storage.size(); i++) {
     cout << i + 1 << ". " << list_storage[i]->getName() << endl;
   }
+  // Input validation needed
   cin >> list_A >> list_B;
-  cout << "Select target node in list A:" << endl;
-  list_storage[list_A - 1]->display();
-  cin >> target;
-  // Move to target node of list A
-
-  // Move to tail of list B
-
-  // While current A is not null, copy each node to B
+  if (list_storage[list_A - 1]->getSize() == 0) {
+    cout << "Copied an empty list" << endl;
+    return;
+  } else {
+    cout << "Select target node in list A:" << endl;
+    list_storage[list_A - 1]->display();
+    cin >> target;
+    // Move to target node of list A
+    node *current_A = list_storage[list_A - 1]->goTo(target);
+    // While current A is not null, copy each node to B
+    while (current_A != nullptr) {
+      list_storage[list_B - 1]->pushBack(current_A->data);
+      current_A = current_A->next;
+    }
+  }
 }
 
 void lists::display() {

@@ -44,19 +44,21 @@ int list::getSize() {
 }
 
 node* list::goTo(int position) {
-  node *current = head;
-  for (int i = 0; i < position - 1; i++) {
-    current = current->next;
+  if (position <= 1) {
+    return head;
+  } else if (position >= size) {
+    node *current = head;
+    while (current->next != nullptr) {
+      current = current->next;
+    }
+    return current;
+  } else {
+    node *current = head;
+    for (int i = 0; i < position - 1; i++) {
+      current = current->next;
+    }
+    return current;
   }
-  return current;
-}
-
-node* list::goToTail() {
-  node *current = head;
-  while (current->next != NULL) {
-    current = current->next;
-  }
-  return current;
 }
 
 // Basic operations
@@ -168,8 +170,8 @@ void list::popPos(int position) {
 }
 
 void list::display() {
-  cout << "Name: " << getName() << ", Size: " << getSize() << endl;
-  if (getSize() > 0) {
+  cout << "Name: " << name << ", Size: " << size << endl;
+  if (size > 0) {
     node *current = head;
     while (current->next != nullptr) {
       cout << "{" << current->data << "}->";
