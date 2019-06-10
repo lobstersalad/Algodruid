@@ -11,7 +11,7 @@ using std::string;
 
 class node {
   public:
-    int data;
+    char data;
     node *next = nullptr;
 };
 
@@ -21,16 +21,19 @@ class list {
     list(const list& list);
     list& operator=(const list& list);
     ~list();
+    // Utility functions
     void setName(string name);
     string getName();
     int getSize();
+    node* goTo(int position);
+    node* goToTail();
     // Basic operations
-    void pushFront(int value);
-    void pushBack(int value);
-    void pushPos(int value, int index);
+    void pushFront(char value);
+    void pushBack(char value);
+    void pushPos(char value, int position);
     void popFront();
     void popBack();
-    void popPos(int index);
+    void popPos(int position);
     void display();
     void clear();
     // Special operations

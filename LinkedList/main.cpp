@@ -58,15 +58,16 @@ void specialMenu(list &list) {
 }
 
 void basicMenu(list &list) {
-  int option = 0, max_options = 9, value, index;
+  int option = 0, max_options = 9, position;
+	char value;
   do {
     cout << "Basic Menu:" << endl;
     cout << "1. Push Front" << endl;
     cout << "2. Push Back" << endl;
-    cout << "3. Push to Given Index" << endl;
+    cout << "3. Push to Position" << endl;
     cout << "4. Pop Front" << endl;
     cout << "5. Pop Back" << endl;
-    cout << "6. Pop at Given Index" << endl;
+    cout << "6. Pop at Position" << endl;
     cout << "7. Display List" << endl;
     cout << "8. Clear List" << endl;
     cout << "9. Back" << endl;
@@ -82,9 +83,9 @@ void basicMenu(list &list) {
       list.pushBack(value);
 			list.display();
     } else if (option == 3) {
-      cout << "Enter value and index" << endl;
-      cin >> value >> index;
-      list.pushPos(value, index);
+      cout << "Enter value and position" << endl;
+      cin >> value >> position;
+      list.pushPos(value, position);
 			list.display();
     } else if (option == 4) {
       list.popFront();
@@ -93,9 +94,9 @@ void basicMenu(list &list) {
       list.popBack();
 			list.display();
     } else if (option == 6) {
-      cout << "Enter index" << endl;
-      cin >> index;
-      list.popPos(index);
+      cout << "Enter position" << endl;
+      cin >> position;
+      list.popPos(position);
 			list.display();
     } else if (option == 7) {
       list.display();
@@ -117,7 +118,7 @@ void listManager(lists &lists) {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
 		cout << "2. Delete List" << endl;
-		cout << "3. Merge Lists" << endl;
+		cout << "3. Copy List" << endl;
 		cout << "4. Display Lists" << endl;
 		cout << "5. Back" << endl;
 		option = parseOption(max_options);
@@ -126,7 +127,7 @@ void listManager(lists &lists) {
 		} else if (option == 2) {
 			lists.deleteList();
 		} else if (option == 3) {
-			lists.mergeLists();
+			lists.copyList();
 		} else if (option == 4) {
 			lists.display();
 		} else if (option == max_options) {

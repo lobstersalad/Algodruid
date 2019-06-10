@@ -29,6 +29,8 @@ list::~list() {
   }
 }
 
+// Utility functions
+
 void list::setName(string name) {
   this->name = name;
 }
@@ -41,9 +43,25 @@ int list::getSize() {
   return size;
 }
 
+node* list::goTo(int position) {
+  node *current = head;
+  for (int i = 0; i < position - 1; i++) {
+    current = current->next;
+  }
+  return current;
+}
+
+node* list::goToTail() {
+  node *current = head;
+  while (current->next != NULL) {
+    current = current->next;
+  }
+  return current;
+}
+
 // Basic operations
 
-void list::pushFront(int value) {
+void list::pushFront(char value) {
   cout << "Pushing " << value << " to the front" << endl;
   node *temp = new node;
   temp->data = value;
@@ -52,7 +70,7 @@ void list::pushFront(int value) {
   size++;
 }
 
-void list::pushBack(int value) {
+void list::pushBack(char value) {
   cout << "Pushing " << value << " to the back" << endl;
   node *temp = new node;
   temp->data = value;
@@ -70,24 +88,21 @@ void list::pushBack(int value) {
   size++;
 }
 
-void list::pushPos(int value, int index) {
-  if (index == 0) {
+void list::pushPos(char value, int position) {
+  if (position <= 1) {
     pushFront(value);
     return;
-  } else if (index == size) {
+  } else if (position >= size) {
     pushBack(value);
     return;
-  } else if (index > 0 && index > size) {
-    cout << "No such index" << endl;
-    return;
   } else {
-    cout << "Inserting " << value << " at index " << index << endl;
+    cout << "Inserting " << value << " at position " << position << endl;
   }
   node *previous;
   node *current = head;
   node *temp = new node;
   temp->data = value;
-  for (int i = 0; i < index; i++) {
+  for (int i = 0; i < position - 1; i++) {
     previous = current;
     current = current->next;
   }
@@ -127,23 +142,20 @@ void list::popBack() {
   }
 }
 
-void list::popPos(int index) {
+void list::popPos(int position) {
   if (size > 0) {
-    if (index == 0) {
+    if (position <= 1) {
       popFront();
       return;
-    } else if (index == size - 1) {
+    } else if (position >= size) {
       popBack();
       return;
-    } else if (index > 0 && index >= size) {
-      cout << "No such index" << endl;
-      return;
     } else {
-      cout << "Popping index " << index << endl;
+      cout << "Popping at position " << position << endl;
     }
     node *previous;
     node *current = head;
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < position - 1; i++) {
       previous = current;
       current = current->next;
     }
@@ -157,12 +169,16 @@ void list::popPos(int index) {
 
 void list::display() {
   cout << "Name: " << getName() << ", Size: " << getSize() << endl;
-  node *current = head;
-  while (current->next != nullptr) {
-    cout << "{" << current->data << "}->";
-    current = current->next;
+  if (getSize() > 0) {
+    node *current = head;
+    while (current->next != nullptr) {
+      cout << "{" << current->data << "}->";
+      current = current->next;
+    }
+    cout << "{" << current->data << "}" << endl;
+  } else {
+    cout << "List is empty" << endl;
   }
-  cout << "{" << current->data << "}" << endl;
 }
 
 void list::clear() {
