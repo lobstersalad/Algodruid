@@ -11,7 +11,7 @@ using std::string;
 
 class node {
   public:
-    char data;
+    string data;
     node *next = nullptr;
 };
 
@@ -27,9 +27,9 @@ class list {
     int getSize();
     node* goTo(int position);
     // Basic operations
-    void pushFront(char value);
-    void pushBack(char value);
-    void pushPos(char value, int position);
+    void pushFront(string value);
+    void pushBack(string value);
+    void pushPos(string value, int position);
     void popFront();
     void popBack();
     void popPos(int position);

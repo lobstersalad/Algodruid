@@ -59,7 +59,7 @@ void specialMenu(list &list) {
 
 void basicMenu(list &list) {
   int option = 0, max_options = 9, position;
-	char value;
+	string value;
   do {
     cout << "Basic Menu:" << endl;
     cout << "1. Push Front" << endl;

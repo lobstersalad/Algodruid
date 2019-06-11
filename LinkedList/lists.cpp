@@ -6,7 +6,7 @@ lists::lists() {
 
 void lists::newList() {
   int size = 0;
-  char value;
+  string value;
   string name;
   cout << "Please enter a name for this list" << endl;
   cin >> name;
@@ -34,19 +34,21 @@ void lists::copyList() {
   }
   // Input validation needed
   cin >> list_A >> list_B;
-  if (list_storage[list_A - 1]->getSize() == 0) {
+  if (list_A < 1 || list_A > list_storage.size() || list_B < 1 || list_B > list_storage.size()) {
+    cout << "Invalid list" << endl;
+  } else if (list_storage[list_A - 1]->getSize() == 0) {
     cout << "Copied an empty list" << endl;
-    return;
   } else {
     cout << "Select target node in list A:" << endl;
     list_storage[list_A - 1]->display();
     cin >> target;
-    // Move to target node of list A
     node *current_A = list_storage[list_A - 1]->goTo(target);
-    // While current A is not null, copy each node to B
-    while (current_A != nullptr) {
+    // Use of limit allows copying a list to itself
+    int counter = 0, limit = list_storage[list_A - 1]->getSize() - target + 1;
+    while (current_A != nullptr && counter != limit) {
       list_storage[list_B - 1]->pushBack(current_A->data);
       current_A = current_A->next;
+      counter++;
     }
   }
 }

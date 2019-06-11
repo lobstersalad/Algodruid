@@ -63,7 +63,7 @@ node* list::goTo(int position) {
 
 // Basic operations
 
-void list::pushFront(char value) {
+void list::pushFront(string value) {
   cout << "Pushing " << value << " to the front" << endl;
   node *temp = new node;
   temp->data = value;
@@ -72,7 +72,7 @@ void list::pushFront(char value) {
   size++;
 }
 
-void list::pushBack(char value) {
+void list::pushBack(string value) {
   cout << "Pushing " << value << " to the back" << endl;
   node *temp = new node;
   temp->data = value;
@@ -90,12 +90,18 @@ void list::pushBack(char value) {
   size++;
 }
 
-void list::pushPos(char value, int position) {
-  if (position <= 1) {
+void list::pushPos(string value, int position) {
+  if (position < 1) {
+    cout << "No such position" << endl;
+    return;
+  } else if (position == 1) {
     pushFront(value);
     return;
-  } else if (position > size) {
+  } else if (position == size + 1) {
     pushBack(value);
+    return;
+  } else if (position > size + 1) {
+    cout << "No such position" << endl;
     return;
   } else {
     cout << "Inserting " << value << " at position " << position << endl;
@@ -146,11 +152,17 @@ void list::popBack() {
 
 void list::popPos(int position) {
   if (size > 0) {
-    if (position <= 1) {
+    if (position < 1) {
+      cout << "No such position" << endl;
+      return;
+    } else if (position == 1) {
       popFront();
       return;
-    } else if (position > size) {
+    } else if (position == size) {
       popBack();
+      return;
+    } else if (position > size) {
+      cout << "No such position" << endl;
       return;
     } else {
       cout << "Popping at position " << position << endl;
