@@ -1,5 +1,9 @@
 #include "list.h"
 
+void node::setNext(node *next) {
+  this->next = next;
+}
+
 list::list() : name("default"), size(0), head(nullptr) {
 
 }

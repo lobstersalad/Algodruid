@@ -18,6 +18,7 @@ class lists {
     void newList();
     void deleteList();
     void copyList();
+    void pointList();
     void display();
     vector<shared_ptr<list>> list_storage;
   private:

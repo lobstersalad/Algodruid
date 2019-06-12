@@ -11,6 +11,7 @@ using std::string;
 
 class node {
   public:
+    void setNext(node *next);
     string data;
     node *next = nullptr;
 };
