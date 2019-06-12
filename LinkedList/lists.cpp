@@ -85,6 +85,7 @@ void lists::pointList() {
     node *tail_A = list_storage[list_A - 1]->goTo(list_storage[list_A - 1]->getSize());
     node *current_B = list_storage[list_B - 1]->goTo(target);
     tail_A->next = current_B;
+    // Update list size
     while (tail_A->next != nullptr) {
       tail_A = tail_A->next;
       list_storage[list_A - 1]->setSize(list_storage[list_A - 1]->getSize() + 1);
@@ -110,6 +111,7 @@ void lists::findCommon() {
     int size_B = list_storage[list_B - 1]->getSize();
     node *current_A = list_storage[list_A - 1]->goTo(1);
     node *current_B = list_storage[list_B - 1]->goTo(1);
+    // Advance node pointers so that remaining node count for both lists are equal
     if (size_A > size_B) {
       for (int i = 0; i < (size_A - size_B); i++) {
         current_A = current_A->next;
@@ -119,11 +121,16 @@ void lists::findCommon() {
         current_B = current_B->next;
       }
     }
+    // Advance node pointers until they are equal
     while (current_A != current_B) {
       current_A = current_A->next;
       current_B = current_B->next;
     }
-    cout << "Lists merge at " << current_B->data << endl;
+    if (current_A != nullptr) {
+      cout << "Lists merge at " << current_A->data << endl;
+    } else {
+      cout << "No common node found" << endl;
+    }
   }
 }
 
