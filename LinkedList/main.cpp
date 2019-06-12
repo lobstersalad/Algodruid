@@ -49,7 +49,7 @@ void specialMenu(list &list) {
       cout << "Enter k" << endl;
       cin >> k;
       list.findKEnd(k);
-    } else if (option == 5) {
+		} else if (option == 5) {
       list.display();
     } else if (option == max_options) {
       cout << "Returning to main menu" << endl;
@@ -113,15 +113,16 @@ list selectList(lists &lists) {
 }
 
 void listManager(lists &lists) {
-	int option = 0, max_options = 6;
+	int option = 0, max_options = 7;
 	do {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
 		cout << "2. Delete List" << endl;
 		cout << "3. Copy List" << endl;
 		cout << "4. Point List" << endl;
-		cout << "5. Display Lists" << endl;
-		cout << "6. Back" << endl;
+		cout << "5. Find Common Node Among Two Lists" << endl;
+		cout << "6. Display Lists" << endl;
+		cout << "7. Back" << endl;
 		option = parseOption(max_options);
 		if (option == 1) {
 			lists.newList();
@@ -132,6 +133,8 @@ void listManager(lists &lists) {
 		} else if (option == 4) {
 			lists.pointList();
 		} else if (option == 5) {
+			lists.findCommon();
+		} else if (option == 6) {
 			lists.display();
 		} else if (option == max_options) {
 			cout << "Returning to main menu" << endl;

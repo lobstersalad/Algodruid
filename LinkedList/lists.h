@@ -19,6 +19,7 @@ class lists {
     void deleteList();
     void copyList();
     void pointList();
+    void findCommon();
     void display();
     vector<shared_ptr<list>> list_storage;
   private:

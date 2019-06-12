@@ -11,7 +11,6 @@ using std::string;
 
 class node {
   public:
-    void setNext(node *next);
     string data;
     node *next = nullptr;
 };
@@ -25,6 +24,7 @@ class list {
     // Utility functions
     void setName(string name);
     string getName();
+    void setSize(int size);
     int getSize();
     node* goTo(int position);
     // Basic operations
