@@ -134,6 +134,20 @@ void lists::findCommon() {
   }
 }
 
+void lists::mirror() {
+  int option, counter;
+  cout << "Select list to mirror:" << endl;
+  for (int i = 0; i < list_storage.size(); i++) {
+    cout << i + 1 << ". " << list_storage[i]->getName() << endl;
+  }
+  cin >> option;
+  node *current_A = list_storage[option - 1]->goTo(1)->next;
+  while (current_A != nullptr) {
+    list_storage[option - 1]->pushFront(current_A->data);
+    current_A = current_A->next;
+  }
+}
+
 void lists::display() {
   for (int i = 0; i < list_storage.size(); i++) {
     list_storage[i]->display();

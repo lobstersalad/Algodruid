@@ -271,9 +271,9 @@ void list::reverseK(int k) {
 }
 
 void list::findKBegin(int k) {
-  if (k >= 0 && k < size) {
+  if (k >= 1 && k <= size) {
     node *current = head;
-    for (int i = 0; i != k; i++) {
+    for (int i = 0; i != k - 1; i++) {
       current = current->next;
     }
     cout << "Value at position " << k << " from the start is " << current->data << endl;
@@ -283,13 +283,13 @@ void list::findKBegin(int k) {
 }
 
 void list::findKEnd(int k) {
-  if (k >= 0 && k < size) {
+  if (k >= 1 && k <= size) {
     node *current = head;
     node *position = head;
-    for (int i = 0; i != k; i++) {
+    for (int i = 0; i != k - 1; i++) {
       current = current->next;
     }
-    while (current != nullptr) {
+    while (current->next != nullptr) {
       current = current->next;
       position = position->next;
     }
