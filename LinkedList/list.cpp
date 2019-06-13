@@ -47,6 +47,10 @@ int list::getSize() {
   return size;
 }
 
+void list::growBy(int increase) {
+  this->size += increase;
+}
+
 node* list::goTo(int position) {
   if (position <= 1) {
     return head;

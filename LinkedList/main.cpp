@@ -113,7 +113,7 @@ list selectList(lists &lists) {
 }
 
 void listManager(lists &lists) {
-	int option = 0, max_options = 8;
+	int option = 0, max_options = 9;
 	do {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
@@ -122,8 +122,9 @@ void listManager(lists &lists) {
 		cout << "4. Point List" << endl;
 		cout << "5. Mirror List" << endl;
 		cout << "6. Find Common Node Among Two Lists" << endl;
-		cout << "7. Display Lists" << endl;
-		cout << "8. Back" << endl;
+		cout << "7. Interleave Two Lists" << endl;
+		cout << "8. Display Lists" << endl;
+		cout << "9. Back" << endl;
 		option = parseOption(max_options);
 		if (option == 1) {
 			lists.newList();
@@ -138,6 +139,8 @@ void listManager(lists &lists) {
 		} else if (option == 6) {
 			lists.findCommon();
 		} else if (option == 7) {
+			lists.interleave();
+		} else if (option == 8) {
 			lists.display();
 		} else if (option == max_options) {
 			cout << "Returning to main menu" << endl;

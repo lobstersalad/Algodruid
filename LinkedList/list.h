@@ -26,6 +26,7 @@ class list {
     string getName();
     void setSize(int size);
     int getSize();
+    void growBy(int increase);
     node* goTo(int position);
     // Basic operations
     void pushFront(string value);
