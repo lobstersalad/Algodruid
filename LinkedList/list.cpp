@@ -69,6 +69,10 @@ node* list::goTo(int position) {
   }
 }
 
+void list::nullifyHead() {
+  head = nullptr;
+}
+
 // Basic operations
 
 void list::pushFront(string value) {

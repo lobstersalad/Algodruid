@@ -28,6 +28,7 @@ class list {
     int getSize();
     void growBy(int increase);
     node* goTo(int position);
+    void nullifyHead();
     // Basic operations
     void pushFront(string value);
     void pushBack(string value);

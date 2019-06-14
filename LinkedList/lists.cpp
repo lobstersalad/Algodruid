@@ -164,6 +164,7 @@ void lists::mirror() {
 void lists::interleave() {
   int list_A, list_B;
   cout << "This operation will interleave two lists. List A will be renamed and list B will be destroyed" << endl;
+  cout << "The smaller list will always be interleaved with the larger list" << endl;
   cout << "Select list A:" << endl;
   for (int i = 0; i < list_storage.size(); i++) {
     cout << i + 1 << ". " << list_storage[i]->getName() << endl;
@@ -186,6 +187,15 @@ void lists::interleave() {
   } else if (list_storage[list_A - 1]->getSize() == 0 || list_storage[list_B - 1]->getSize() == 0) {
     cout << "Cannot operate on an empty list" << endl;
   } else {
+    // list_A must be the larger list
+    if (list_storage[list_A - 1]->getSize() >= list_storage[list_B - 1]->getSize()) {
+      // Proceed
+    } else {
+      // Swap lists before proceeding
+      int temp = list_A;
+      list_A = list_B;
+      list_B = temp;
+    }
     // Start at head of each list
     node *current_A = list_storage[list_A - 1]->goTo(1);
     node *current_B = list_storage[list_B - 1]->goTo(1);
@@ -202,9 +212,6 @@ void lists::interleave() {
         temp_B = current_B->next;
       }
     }
-    int size_A = list_storage[list_A - 1]->getSize();
-    list_storage[list_A - 1]->growBy(list_storage[list_B - 1]->getSize());
-    list_storage[list_B - 1]->growBy(size_A - 1);
     // Copy list A to new list, destroy old A and B
     string name;
     cout << "Please enter a name for the new list" << endl;
@@ -220,6 +227,7 @@ void lists::interleave() {
     while (list_storage[list_A - 1]->getSize() > 0) {
       list_storage[list_A - 1]->popBack();
     }
+    list_storage[list_B - 1]->nullifyHead();
     list_storage.erase(list_storage.begin() + list_B - 1);
     list_storage.erase(list_storage.begin() + list_A - 1);
   }
