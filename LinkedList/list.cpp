@@ -307,4 +307,16 @@ void list::findKEnd(int k) {
   }
 }
 
-// Test
+void list::mirror() {
+  int option, counter;
+  cout << "Appending first n - 1 nodes onto list..." << endl;
+  node *current = goTo(1)->next;
+  while (current != nullptr) {
+    pushFront(current->data);
+    current = current->next;
+  }
+}
+
+void list::sort() {
+
+}

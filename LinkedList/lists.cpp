@@ -146,21 +146,6 @@ void lists::findCommon() {
   }
 }
 
-void lists::mirror() {
-  int option, counter;
-  cout << "This operation will append the first n - 1 nodes of a list onto the end of itself" << endl;
-  cout << "Select list to mirror:" << endl;
-  for (int i = 0; i < list_storage.size(); i++) {
-    cout << i + 1 << ". " << list_storage[i]->getName() << endl;
-  }
-  cin >> option;
-  node *current_A = list_storage[option - 1]->goTo(1)->next;
-  while (current_A != nullptr) {
-    list_storage[option - 1]->pushFront(current_A->data);
-    current_A = current_A->next;
-  }
-}
-
 void lists::interleave() {
   int list_A, list_B;
   cout << "This operation will interleave two lists. List A will be renamed and list B will be destroyed" << endl;

@@ -43,6 +43,8 @@ class list {
     void reverseK(int k);
     void findKBegin(int k);
     void findKEnd(int k);
+    void mirror();
+    void sort();
   private:
     string name;
     int size;

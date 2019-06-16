@@ -23,15 +23,16 @@ int parseOption(int max_options) {
 }
 
 void specialMenu(list &list) {
-  int option = 0, k = 0, max_options = 6;
+  int option = 0, k = 0, max_options = 7;
   do {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
     cout << "2. Reverse Every k Nodes" << endl;
     cout << "3. Find kth Element from Start" << endl;
     cout << "4. Find kth Element from End" << endl;
-    cout << "5. Display List" << endl;
-    cout << "6. Back" << endl;
+		cout << "5. Mirror List" << endl;
+    cout << "6. Display List" << endl;
+    cout << "7. Back" << endl;
     option = parseOption(max_options);
     if (option == 1) {
       list.reverse();
@@ -50,6 +51,9 @@ void specialMenu(list &list) {
       cin >> k;
       list.findKEnd(k);
 		} else if (option == 5) {
+			list.mirror();
+			list.display();
+		} else if (option == 6) {
       list.display();
     } else if (option == max_options) {
       cout << "Returning to main menu" << endl;
@@ -113,18 +117,17 @@ list selectList(lists &lists) {
 }
 
 void listManager(lists &lists) {
-	int option = 0, max_options = 9;
+	int option = 0, max_options = 8;
 	do {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
 		cout << "2. Delete List" << endl;
 		cout << "3. Copy List" << endl;
 		cout << "4. Point List" << endl;
-		cout << "5. Mirror List" << endl;
-		cout << "6. Find Common Node Among Two Lists" << endl;
-		cout << "7. Interleave Two Lists" << endl;
-		cout << "8. Display Lists" << endl;
-		cout << "9. Back" << endl;
+		cout << "5. Find Common Node Among Two Lists" << endl;
+		cout << "6. Interleave Two Lists" << endl;
+		cout << "7. Display Lists" << endl;
+		cout << "8. Back" << endl;
 		option = parseOption(max_options);
 		if (option == 1) {
 			lists.newList();
@@ -135,12 +138,10 @@ void listManager(lists &lists) {
 		} else if (option == 4) {
 			lists.pointList();
 		} else if (option == 5) {
-			lists.mirror();
-		} else if (option == 6) {
 			lists.findCommon();
-		} else if (option == 7) {
+		} else if (option == 6) {
 			lists.interleave();
-		} else if (option == 8) {
+		} else if (option == 7) {
 			lists.display();
 		} else if (option == max_options) {
 			cout << "Returning to main menu" << endl;
