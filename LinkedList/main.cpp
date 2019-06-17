@@ -23,7 +23,7 @@ int parseOption(int max_options) {
 }
 
 void specialMenu(list &list) {
-  int option = 0, k = 0, max_options = 7;
+  int option = 0, k = 0, max_options = 8;
   do {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
@@ -31,8 +31,9 @@ void specialMenu(list &list) {
     cout << "3. Find kth Element from Start" << endl;
     cout << "4. Find kth Element from End" << endl;
 		cout << "5. Mirror List" << endl;
-    cout << "6. Display List" << endl;
-    cout << "7. Back" << endl;
+		cout << "6. Sort List" << endl;
+    cout << "7. Display List" << endl;
+    cout << "8. Back" << endl;
     option = parseOption(max_options);
     if (option == 1) {
       list.reverse();
@@ -54,6 +55,9 @@ void specialMenu(list &list) {
 			list.mirror();
 			list.display();
 		} else if (option == 6) {
+			list.mergeSort();
+			list.display();
+		} else if (option == 7) {
       list.display();
     } else if (option == max_options) {
       cout << "Returning to main menu" << endl;

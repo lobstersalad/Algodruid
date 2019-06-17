@@ -26,9 +26,9 @@ class list {
     string getName();
     void setSize(int size);
     int getSize();
+    void setHead(node *head);
     void growBy(int increase);
     node* goTo(int position);
-    void nullifyHead();
     // Basic operations
     void pushFront(string value);
     void pushBack(string value);
@@ -44,7 +44,8 @@ class list {
     void findKBegin(int k);
     void findKEnd(int k);
     void mirror();
-    void sort();
+    void merge(node **start_A, node **end_A, node **start_B, node **end_B);
+    void mergeSort();
   private:
     string name;
     int size;

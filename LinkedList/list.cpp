@@ -1,3 +1,5 @@
+// Merge Sort taken from https://www.geeksforgeeks.org/iterative-merge-sort-for-linked-list/
+
 #include "list.h"
 
 list::list() : name("default"), size(0), head(nullptr) {
@@ -47,6 +49,10 @@ int list::getSize() {
   return size;
 }
 
+void list::setHead(node* head) {
+  this->head = head;
+}
+
 void list::growBy(int increase) {
   this->size += increase;
 }
@@ -67,10 +73,6 @@ node* list::goTo(int position) {
     }
     return current;
   }
-}
-
-void list::nullifyHead() {
-  head = nullptr;
 }
 
 // Basic operations
@@ -317,6 +319,77 @@ void list::mirror() {
   }
 }
 
-void list::sort() {
+void list::merge(node **start_A, node **end_A, node **start_B, node **end_B) {
+  node *temp = nullptr;
+  if ((*start_A)->data > (*start_B)->data) {
+    swap(*start_A, *start_B);
+    swap(*end_A, *end_B);
+  }
 
+  node *A_start = *start_A, *A_end = *end_A;
+  node *B_start = *start_B, *B_end = *end_B;
+  node *B_endnext = (*end_B)->next;
+  while (A_start != A_end && B_start != B_endnext) {
+    if (A_start->next->data > B_start->data) {
+      temp = B_start->next;
+      B_start->next = A_start->next;
+      A_start->next = B_start;
+      B_start = temp;
+    }
+    A_start = A_start->next;
+  }
+  if (A_start == A_end) {
+    A_start->next = B_start;
+  } else {
+    *end_B = *end_A;
+  }
+}
+
+void list::mergeSort() {
+  if (head == nullptr) {
+    return;
+  } else {
+    node *start_A = nullptr, *end_A = nullptr;
+    node *start_B = nullptr, *end_B = nullptr;
+    node *previous = nullptr;
+
+    for (int gap = 1; gap < size; gap = gap * 2) {
+      start_A = head;
+      while (start_A != nullptr) {
+        bool first_iteration = false;
+        if (start_A == head) {
+          first_iteration = true;
+        }
+
+        int counter = gap;
+        end_A = start_A;
+        while (--counter && end_A->next != nullptr) {
+          end_A = end_A->next;
+        }
+
+        start_B = end_A->next;
+        if (start_B == nullptr) {
+          break;
+        }
+        counter = gap;
+        end_B = start_B;
+        while (--counter && end_B->next != nullptr) {
+          end_B = end_B->next;
+        }
+
+        node *temp = end_B->next;
+
+        merge(&start_A, &end_A, &start_B, &end_B);
+
+        if (first_iteration == true) {
+          head = start_A;
+        } else {
+          previous->next = start_A;
+        }
+        previous = end_B;
+        start_A = temp;
+      }
+      previous->next = start_A;
+    }
+  }
 }

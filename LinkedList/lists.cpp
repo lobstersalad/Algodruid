@@ -203,7 +203,7 @@ void lists::interleave() {
     cin >> name;
     list_storage[list_A - 1]->setName(name);
     list_storage[list_A - 1]->growBy(list_storage[list_B - 1]->getSize());
-    list_storage[list_B - 1]->nullifyHead();
+    list_storage[list_B - 1]->setHead(nullptr);
     list_storage.erase(list_storage.begin() + list_B - 1);
   }
 }
