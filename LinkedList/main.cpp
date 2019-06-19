@@ -23,7 +23,7 @@ int parseOption(int max_options) {
 }
 
 void specialMenu(list &list) {
-  int option = 0, k = 0, max_options = 7;
+  int option = 0, k = 0, max_options = 8;
   do {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
@@ -31,8 +31,9 @@ void specialMenu(list &list) {
     cout << "3. Find kth Element from Start" << endl;
     cout << "4. Find kth Element from End" << endl;
 		cout << "5. Mirror List" << endl;
-    cout << "6. Display List" << endl;
-    cout << "7. Back" << endl;
+		cout << "6. Check for Palindrome" << endl;
+    cout << "7. Display List" << endl;
+    cout << "8. Back" << endl;
     option = parseOption(max_options);
     if (option == 1) {
       list.reverse();
@@ -54,6 +55,13 @@ void specialMenu(list &list) {
 			list.mirror();
 			list.display();
 		} else if (option == 6) {
+			list.display();
+			if (list.isPalindrome()) {
+				cout << "This list is a palindrome" << endl;
+			} else {
+				cout << "This list is not a palindrome" << endl;
+			}
+		} else if (option == 7) {
       list.display();
     } else if (option == max_options) {
       cout << "Returning to main menu" << endl;
@@ -120,9 +128,9 @@ void listManager(lists &lists) {
 		cout << "2. Delete List" << endl;
 		cout << "3. Copy List" << endl;
 		cout << "4. Point List" << endl;
-		cout << "5. Find Common Node Among Two Lists" << endl;
-		cout << "6. Interleave Two Lists" << endl;
-		cout << "7. Merge Two Sorted Lists" << endl;
+		cout << "5. Find Common Node" << endl;
+		cout << "6. Interleave Lists" << endl;
+		cout << "7. Merge Sorted Lists" << endl;
 		cout << "8. Display Lists" << endl;
 		cout << "9. Back" << endl;
 		option = parseOption(max_options);

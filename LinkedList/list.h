@@ -40,12 +40,12 @@ class list {
     void clear();
     // Special operations
     void reverse();
+    node* reverse(node *target);
     void reverseK(int k);
     void findKBegin(int k);
     void findKEnd(int k);
     void mirror();
-    void merge(node **start_A, node **end_A, node **start_B, node **end_B);
-    void mergeSort();
+    bool isPalindrome();
   private:
     string name;
     int size;
