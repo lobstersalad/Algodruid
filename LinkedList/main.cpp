@@ -23,7 +23,7 @@ int parseOption(int max_options) {
 }
 
 void specialMenu(list &list) {
-  int option = 0, k = 0, max_options = 8;
+  int option = 0, k = 0, max_options = 7;
   do {
     cout << "Special Menu:" << endl;
     cout << "1. Reverse List" << endl;
@@ -31,9 +31,8 @@ void specialMenu(list &list) {
     cout << "3. Find kth Element from Start" << endl;
     cout << "4. Find kth Element from End" << endl;
 		cout << "5. Mirror List" << endl;
-		cout << "6. Sort List" << endl;
-    cout << "7. Display List" << endl;
-    cout << "8. Back" << endl;
+    cout << "6. Display List" << endl;
+    cout << "7. Back" << endl;
     option = parseOption(max_options);
     if (option == 1) {
       list.reverse();
@@ -55,9 +54,6 @@ void specialMenu(list &list) {
 			list.mirror();
 			list.display();
 		} else if (option == 6) {
-			list.mergeSort();
-			list.display();
-		} else if (option == 7) {
       list.display();
     } else if (option == max_options) {
       cout << "Returning to main menu" << endl;
@@ -116,12 +112,8 @@ void basicMenu(list &list) {
   } while (option != max_options);
 }
 
-list selectList(lists &lists) {
-
-}
-
 void listManager(lists &lists) {
-	int option = 0, max_options = 8;
+	int option = 0, max_options = 9;
 	do {
 		cout << "List Manager:" << endl;
 		cout << "1. New List" << endl;
@@ -130,8 +122,9 @@ void listManager(lists &lists) {
 		cout << "4. Point List" << endl;
 		cout << "5. Find Common Node Among Two Lists" << endl;
 		cout << "6. Interleave Two Lists" << endl;
-		cout << "7. Display Lists" << endl;
-		cout << "8. Back" << endl;
+		cout << "7. Merge Two Sorted Lists" << endl;
+		cout << "8. Display Lists" << endl;
+		cout << "9. Back" << endl;
 		option = parseOption(max_options);
 		if (option == 1) {
 			lists.newList();
@@ -146,6 +139,9 @@ void listManager(lists &lists) {
 		} else if (option == 6) {
 			lists.interleave();
 		} else if (option == 7) {
+			lists.mergeSorted();
+			lists.display();
+		} else if (option == 8) {
 			lists.display();
 		} else if (option == max_options) {
 			cout << "Returning to main menu" << endl;

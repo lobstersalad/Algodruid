@@ -21,6 +21,7 @@ class lists {
     void pointList();
     void findCommon();
     void interleave();
+    void mergeSorted();
     void display();
     vector<shared_ptr<list>> list_storage;
   private:

@@ -208,6 +208,71 @@ void lists::interleave() {
   }
 }
 
+void lists::mergeSorted() {
+  int list_A, list_B;
+  cout << "This operation will merge two sorted lists into a single sorted list" << endl;
+  cout << "List A will be renamed and list B will be destroyed" << endl;
+  cout << "Select list A:" << endl;
+  for (int i = 0; i < list_storage.size(); i++) {
+    cout << i + 1 << ". " << list_storage[i]->getName() << endl;
+  }
+  // Input validation needed
+  cin >> list_A;
+  cout << "Select list B:" << endl;
+  for (int i = 0; i < list_storage.size(); i++) {
+    if (i + 1 != list_A) {
+      cout << i + 1 << ". " << list_storage[i]->getName() << endl;
+    } else {
+      // Do nothing
+    }
+  }
+  cin >> list_B;
+  if (list_A < 1 || list_A > list_storage.size() || list_B < 1 || list_B > list_storage.size()) {
+    cout << "Invalid list" << endl;
+  } else if (list_A == list_B) {
+    cout << "Cannot merge a list with itself" << endl;
+  } else if (list_storage[list_A - 1]->getSize() == 0 || list_storage[list_B - 1]->getSize() == 0) {
+    cout << "Cannot operate on an empty list" << endl;
+  } else {
+    node *previous = nullptr;
+    node *current_A = list_storage[list_A - 1]->goTo(1);
+    node *current_B = list_storage[list_B - 1]->goTo(1);
+    if (current_A->data <= current_B->data) {
+      previous = current_A;
+      current_A = current_A->next;
+    } else {
+      previous = current_B;
+      current_B = current_B->next;
+    }
+    while (current_A != nullptr && current_B != nullptr) {
+      if (current_A->data <= current_B->data) {
+        previous->next = current_A;
+        current_A = current_A->next;
+        previous = previous->next;
+      } else {
+        previous->next = current_B;
+        current_B = current_B->next;
+        previous = previous->next;
+      }
+    }
+    if (current_A != nullptr) {
+      previous->next = current_A;
+    } else if (current_B != nullptr) {
+      previous->next = current_B;
+    } else {
+      // Do nothing
+    }
+    // Rename list A and update its size; erase list B
+    string name;
+    cout << "Please enter a name for the new list" << endl;
+    cin >> name;
+    list_storage[list_A - 1]->setName(name);
+    list_storage[list_A - 1]->growBy(list_storage[list_B - 1]->getSize());
+    list_storage[list_B - 1]->setHead(nullptr);
+    list_storage.erase(list_storage.begin() + list_B - 1);
+  }
+}
+
 void lists::display() {
   for (int i = 0; i < list_storage.size(); i++) {
     list_storage[i]->display();
