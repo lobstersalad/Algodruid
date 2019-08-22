@@ -2,30 +2,58 @@
 #define STACK_H
 
 #include <vector>
+#include <string>
+#include <iostream>
 
 using std::vector;
+using std::string;
+using std::cout;
+using std::endl;
 
-template <class T>
-class node {
-  public:
-    typedef T value_type;
-    value_type data;
-    node *next = nullptr;
-};
+// Class Declaration
 
 template <class T>
 class stack {
+  private:
+    struct node {
+      public:
+        T data;
+        node *next = nullptr;
+    };
+    string name;
+    int size;
+    node *top;
   public:
-    typedef node<T> node_type;
-    typedef node_type* node_pointer;
     stack();
     //stack(const stack& stack);
     //stack& operator=(const stack& stack);
     //~stack();
-    void push(T item);
+    void push(T value);
     T pop();
-  private:
-    node_pointer top;
+    string get_name();
+    T get_data();
 };
+
+// Class Definition
+
+template <class T>
+stack<T>::stack() : name("default"), size(0), top(nullptr) {
+
+}
+
+template <class T>
+void stack<T>::push(T value) {
+  cout << "Pushing " << value << " onto the stack" << endl;
+  node *temp = new node;
+  temp->data = value;
+  temp->next = top;
+  top = temp;
+  size++;
+}
+
+template <class T>
+T stack<T>::pop() {
+
+}
 
 #endif
