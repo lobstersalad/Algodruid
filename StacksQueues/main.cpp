@@ -8,10 +8,9 @@ int main() {
 
   cout << "Welcome to Stacks and Queues" << endl;
   stack<int> int_stack;
-  int_stack.push(2);
-  cout << "Top of the stack is now: " << int_stack.get_top() << endl;
   int_stack.push(1);
-  cout << "Top of the stack is now: " << int_stack.get_top() << endl;
+  int_stack.push(2);
+  int_stack.push(3);
 
   return 0;
 }
