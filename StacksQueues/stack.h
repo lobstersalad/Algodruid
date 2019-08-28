@@ -30,8 +30,7 @@ class stack {
     //~stack();
     void push(T value);
     T pop();
-    string get_name();
-    T get_data();
+    T get_top();
 };
 
 // Class Definition
@@ -54,6 +53,11 @@ void stack<T>::push(T value) {
 template <class T>
 T stack<T>::pop() {
 
+}
+
+template <class T>
+T stack<T>::get_top() {
+  return top->data;
 }
 
 #endif
