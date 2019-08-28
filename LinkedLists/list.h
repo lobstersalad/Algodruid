@@ -17,9 +17,13 @@ class node {
 
 class list {
   public:
+    // Friend Swap
+    friend void swap (list& first, list& second);
+    // Rule of Four
     list();
-    list(const list& list);
-    list& operator=(const list& list);
+    list(const list& copy);
+    list(list&& that);
+    list& operator=(list copy);
     ~list();
     // Utility functions
     void setName(string name);
