@@ -9,6 +9,7 @@ using std::vector;
 using std::string;
 using std::cout;
 using std::endl;
+using std::swap;
 
 // Class Declaration
 
@@ -24,21 +25,54 @@ class stack {
     int size;
     node *top;
   public:
+    friend void swap(stack& first, stack& second);
     stack();
-    //stack(const stack& stack);
-    //stack& operator=(const stack& stack);
-    //~stack();
+    stack(const stack& stack);
+    stack(stack&& that);
+    stack& operator=(const stack& stack);
+    ~stack();
     void push(T value);
     T pop();
-    string get_name();
-    T get_data();
+    T get_top();
 };
 
 // Class Definition
 
 template <class T>
+void stack<T>::swap(stack& first, stack& second) {
+  swap(first.name, second.name);
+  swap(first.size, second.size);
+  swap(first.top, second.top);
+}
+
+template <class T>
 stack<T>::stack() : name("default"), size(0), top(nullptr) {
 
+}
+
+template <class T>
+stack<T>::stack(const stack& stack) : name("default"), size(0), top(nullptr) {
+  node *temp = copy.top;
+  while (temp != nullptr) {
+    // ... not done
+  }
+}
+
+template <class T>
+stack& stack<T>::operator=(const stack& copy) {
+  stack temp(copy);
+  swap(top, temp.top);
+  return *this;
+}
+
+template <class T>
+stack<T>::~stack() {
+  node *temp;
+  while (top != nullptr) {
+    temp = top;
+    top = top->next;
+    delete temp;
+  }
 }
 
 template <class T>
@@ -53,7 +87,22 @@ void stack<T>::push(T value) {
 
 template <class T>
 T stack<T>::pop() {
+  if (size > 0) {
+    cout << "Popping top off the stack" << endl;
+    T value = top->data;
+    node *temp = top;
+    top = top->next;
+    delete temp;
+    size--;
+    return value;
+  } else {
+    cout << "Stack is empty" << endl;
+  }
+}
 
+template <class T>
+T stack<T>::get_top() {
+  return top->data;
 }
 
 #endif

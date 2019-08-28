@@ -1,5 +1,15 @@
 #include "list.h"
 
+// Friend Swap
+
+void swap(list& first, list& second) {
+  swap(first.name, second.name);
+  swap(first.size, second.size);
+  swap(first.head, second.head);
+}
+
+// Rule of Four
+
 list::list() : name("default"), size(0), head(nullptr) {
 
 }
@@ -12,9 +22,12 @@ list::list(const list& copy) : name("default"), size(0), head(nullptr) {
   }
 }
 
-list& list::operator=(const list& copy) {
-  list temp(copy);
-  swap(head, temp.head);
+list::list(list&& that) {
+  swap(*this, that);
+}
+
+list& list::operator=(list copy) {
+  swap(*this, copy);
   return *this;
 }
 
@@ -235,7 +248,7 @@ void list::reverse() {
 node* list::reverse(node *start) {
   node *temp = nullptr;
   node *previous = nullptr;
-  node *current = istart;
+  node *current = start;
   while (current != nullptr) {
     temp = current->next;
     current->next = previous;
