@@ -9,6 +9,7 @@ using std::vector;
 using std::string;
 using std::cout;
 using std::endl;
+using std::swap;
 
 // Class Declaration
 
@@ -24,9 +25,11 @@ class stack {
     int size;
     node *top;
   public:
+    friend void swap(stack& first, stack& second);
     stack();
     stack(const stack& stack);
-    //stack& operator=(const stack& stack);
+    stack(stack&& that);
+    stack& operator=(const stack& stack);
     ~stack();
     void push(T value);
     T pop();
@@ -34,6 +37,13 @@ class stack {
 };
 
 // Class Definition
+
+template <class T>
+void stack<T>::swap(stack& first, stack& second) {
+  swap(first.name, second.name);
+  swap(first.size, second.size);
+  swap(first.top, second.top);
+}
 
 template <class T>
 stack<T>::stack() : name("default"), size(0), top(nullptr) {
@@ -44,7 +54,7 @@ template <class T>
 stack<T>::stack(const stack& stack) : name("default"), size(0), top(nullptr) {
   node *temp = copy.top;
   while (temp != nullptr) {
-
+    // ... not done
   }
 }
 
