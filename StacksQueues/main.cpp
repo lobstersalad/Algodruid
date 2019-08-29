@@ -7,10 +7,14 @@ using std::endl;
 int main() {
 
   cout << "Welcome to Stacks and Queues" << endl;
-  stack<int> int_stack;
-  int_stack.push(1);
-  int_stack.push(2);
-  int_stack.push(3);
+  stack<int> A;
+  A.push(1);
+  A.push(2);
+  A.push(3);
+  A.display();
+  stack<int> B;
+  //B = A;
+  B.display();
 
   return 0;
 }
