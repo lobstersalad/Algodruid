@@ -32,13 +32,10 @@ list& list::operator=(list copy) {
 }
 
 list::~list() {
-  if (head != nullptr) {
+  while (head != nullptr) {
     node *current = head;
-    while (current != nullptr) {
-      node *next = current->next;
-      delete current;
-      current = next;
-    }
+    head = head->next;
+    delete current;
   }
 }
 

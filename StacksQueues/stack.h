@@ -25,25 +25,23 @@ class stack {
     int size;
     node *top;
   public:
-    friend void swap(stack& first, stack& second);
+    friend void swap(stack<T>& first, stack<T>& second) {
+      swap(first.name, second.name);
+      swap(first.size, second.size);
+      swap(first.top, second.top);
+    }
     stack();
-    stack(const stack& stack);
+    stack(const stack& copy);
     stack(stack&& that);
-    stack& operator=(const stack& stack);
+    stack& operator=(stack copy);
     ~stack();
     void push(T value);
     T pop();
     T get_top();
+    void display();
 };
 
 // Class Definition
-
-template <class T>
-void stack<T>::swap(stack& first, stack& second) {
-  swap(first.name, second.name);
-  swap(first.size, second.size);
-  swap(first.top, second.top);
-}
 
 template <class T>
 stack<T>::stack() : name("default"), size(0), top(nullptr) {
@@ -51,25 +49,31 @@ stack<T>::stack() : name("default"), size(0), top(nullptr) {
 }
 
 template <class T>
-stack<T>::stack(const stack& stack) : name("default"), size(0), top(nullptr) {
+stack<T>::stack(const stack& copy) : name("default"), size(0), top(nullptr) {
+  cout << "Copy Constructor" << endl;
   node *temp = copy.top;
   while (temp != nullptr) {
-    // ... not done
+    this->push(temp->data);
+    temp = temp->next;
   }
 }
 
 template <class T>
-stack& stack<T>::operator=(const stack& copy) {
-  stack temp(copy);
-  swap(top, temp.top);
+stack<T>::stack(stack&& that) {
+  swap(*this, that);
+}
+
+template <class T>
+stack<T>& stack<T>::operator=(stack copy) {
+  cout << "Copy Assignment" << endl;
+  swap(top, copy.top);
   return *this;
 }
 
 template <class T>
 stack<T>::~stack() {
-  node *temp;
   while (top != nullptr) {
-    temp = top;
+    node *temp = top;
     top = top->next;
     delete temp;
   }
@@ -87,7 +91,7 @@ void stack<T>::push(T value) {
 
 template <class T>
 T stack<T>::pop() {
-  if (size > 0) {
+  if (top != nullptr) {
     cout << "Popping top off the stack" << endl;
     T value = top->data;
     node *temp = top;
@@ -103,6 +107,19 @@ T stack<T>::pop() {
 template <class T>
 T stack<T>::get_top() {
   return top->data;
+}
+
+template <class T>
+void stack<T>::display() {
+  if (top != nullptr) {
+    node *current = top;
+    while (current != nullptr) {
+      cout << "- " << current->data << " -" << endl;
+      current = current->next;
+    }
+  } else {
+    cout << "Stack is empty" << endl;
+  }
 }
 
 #endif
